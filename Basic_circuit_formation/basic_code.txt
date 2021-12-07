@@ -1,0 +1,21 @@
+from qiskit import *
+from qiskit.visualization import plot_bloch_multivector
+from qiskit.visualization import visualize_transition,plot_histogram
+
+#initial_state=[1,0]
+
+qc=QuantumCircuit(1)
+#qc.initialize(initial_state,0)
+
+
+qc.x(0)
+qc.draw('mpl')
+
+
+backend=Aer.get_backend('statevector_simulator')
+out=execute(qc,backend).result().get_statevector()
+plot_bloch_multivector(out)
+
+
+visualize_transition(qc)
+#visualize_transition(qc, trace=False, saveas=None, fpg=100, spg=2)
